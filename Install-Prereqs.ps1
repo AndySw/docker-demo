@@ -2,6 +2,7 @@
 # Install Hyper-V
 Write-Host "Installing Hyper-V"
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+Enable-WindowsOptionalFeature -Online -FeatureName Containers -All
 Write-Host
 
 # Install apps using Chocolatey
