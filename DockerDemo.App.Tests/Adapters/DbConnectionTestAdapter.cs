@@ -3,7 +3,7 @@ using System.Data;
 
 namespace DockerDemo.App
 {
-    public class ConnectionAdapter<T> : IDbConnection
+    public class DbConnectionTestAdapter<T> : IDbConnection
         where T:IDbConnection, new()
     {
         public string ConnectionString {get; set;}
@@ -12,7 +12,7 @@ namespace DockerDemo.App
         public ConnectionState State {get {return _dbConnection.State;}}
 
         private readonly T _dbConnection;
-        public ConnectionAdapter(){
+        public DbConnectionTestAdapter(){
             _dbConnection = new T();
         }
 

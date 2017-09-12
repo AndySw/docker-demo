@@ -10,7 +10,7 @@ namespace DockerDemo.App
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Program started.");
+            Console.WriteLine("Program started.\r\n");
             ILogger logger = new Logger();
             ICommandFactory<SqlCommand> commandFactory = new CommandFactory<SqlCommand>();
             IConnectionFactory<SqlConnection> connectionFactory = new ConnectionFactory<SqlConnection>("Server=localhost;Database=AppDB;User Id=sa;Password=Passw0rd;");
@@ -18,10 +18,9 @@ namespace DockerDemo.App
 
             var data = repository.GetData();
 
-            foreach(var item in data){Console.WriteLine(item);}
+            foreach(var item in data){Console.WriteLine($"\t - {item}");}
 
-            Console.WriteLine("Press any key to quit.");
-            Console.ReadKey();
+            Console.WriteLine("\r\nProgram complete.");
         }
     }
 }

@@ -2,7 +2,7 @@ using System.Data;
 
 namespace DockerDemo.App
 {
-    public class CommandAdapter<T> : IDbCommand
+    public class DbCommandTestAdapter<T> : IDbCommand
         where T : IDbCommand, new()
     {
         public string CommandText
@@ -39,7 +39,7 @@ namespace DockerDemo.App
 
         private readonly T _dbCommand;
 
-        public CommandAdapter()
+        public DbCommandTestAdapter()
         {
             _dbCommand = new T();
         }

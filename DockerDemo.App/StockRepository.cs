@@ -35,9 +35,8 @@ namespace DockerDemo.App
             }
             catch (System.Exception ex)
             {
-                // should be writing to the logs here
                 _logger.Error(ex);
-                throw;
+                return new List<string>();
             }
         }
 

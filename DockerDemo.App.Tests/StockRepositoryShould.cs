@@ -10,33 +10,31 @@ namespace DockerDemo.App.Tests
 {
     public class StockRepositoryShould
     {
-
-
         public StockRepositoryShould()
         {
 
         }
 
         [Fact]
-        public void GetData()
+        public void GetData() //HACK
         {
             // arrange
-            string commandText = StockRepository<ConnectionAdapter<SqlConnection>, CommandAdapter<SqlCommand>>.COMMAND_TEXT;
-            var stubConnection = Mock.Of<ConnectionAdapter<SqlConnection>>();
+            string commandText = StockRepository<DbConnectionTestAdapter<SqlConnection>, DbCommandTestAdapter<SqlCommand>>.COMMAND_TEXT;
+            var stubConnection = Mock.Of<DbConnectionTestAdapter<SqlConnection>>();
 
             var dataReader = new Mock<IDataReader>();
             dataReader.Setup(m => m["ItemText"].ToString()).Returns("Hello");
             dataReader.SetupSequence(m => m.Read()).Returns(true).Returns(true).Returns(false);
 
-            var stubCommand = Mock.Of<CommandAdapter<SqlCommand>>(m => m.ExecuteReader() == dataReader.Object);
-            var mockConnectionFactory = Mock.Of<IConnectionFactory<ConnectionAdapter<SqlConnection>>>
+            var stubCommand = Mock.Of<DbCommandTestAdapter<SqlCommand>>(m => m.ExecuteReader() == dataReader.Object);
+            var mockConnectionFactory = Mock.Of<IConnectionFactory<DbConnectionTestAdapter<SqlConnection>>>
                 (m => m.GetConnection() == stubConnection);
 
-            var mockCommandFactory = Mock.Of<ICommandFactory<CommandAdapter<SqlCommand>>>
+            var mockCommandFactory = Mock.Of<ICommandFactory<DbCommandTestAdapter<SqlCommand>>>
              (m => m.GetCommand(commandText) == stubCommand);
 
             var mockLogger = Mock.Of<ILogger>();
-            var unit = new StockRepository<ConnectionAdapter<SqlConnection>, CommandAdapter<SqlCommand>>(mockConnectionFactory, mockCommandFactory, mockLogger);
+            var unit = new StockRepository<DbConnectionTestAdapter<SqlConnection>, DbCommandTestAdapter<SqlCommand>>(mockConnectionFactory, mockCommandFactory, mockLogger);
 
             var expected = new List<string>() {"Hello", "Hello"};
 
