@@ -1,9 +1,9 @@
-CREATE DATABASE AppDB
+CREATE DATABASE AppDb
 GO
-USE AppDB
+USE AppDb
 GO
-CREATE TABLE Stock (StockID int, ItemText NVARCHAR(128))
+CREATE TABLE Stock (StockId int, ItemText NVARCHAR(128))
 GO
-INSERT INTO Stock (StockID, ItemText) VALUES (1, N'Coins')
-INSERT INTO Stock (StockID, ItemText) VALUES (1, N'Stamps')
-INSERT INTO Stock (StockID, ItemText) VALUES (1, N'Babysitters')
+INSERT INTO Stock (StockId, ItemText) VALUES (1, N'Coins')
+INSERT INTO Stock (StockId, ItemText) VALUES (1, N'Stamps')
+INSERT INTO Stock (StockId, ItemText) VALUES (1, N'Babysitters')
