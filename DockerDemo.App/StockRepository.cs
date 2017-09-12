@@ -50,6 +50,7 @@ namespace DockerDemo.App
                 dbConnection.Open();
                 using (var dbCommand = _commandFactory.GetCommand(COMMAND_TEXT))
                 {
+                    dbCommand.Connection = dbConnection;
                     using(var dataReader = dbCommand.ExecuteReader(CommandBehavior.CloseConnection)){
                         while(dataReader.Read()){
                             data.Add(dataReader["ItemText"].ToString());
